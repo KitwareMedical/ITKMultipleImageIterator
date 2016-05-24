@@ -6,10 +6,10 @@ CreateTestDriver(MultipleImageIterator "${MultipleImageIterator_LIBRARIES}" "${M
 
 itk_add_test(NAME MultipleImageIteratorTest
   COMMAND MultipleImageIteratorTestDriver
-  --compare ${CMAKE_SOURCE_DIR}/test/randImage.nrrd randImage.nrrd
+  --compare DATA{randBase.nrrd} "${ITK_TEST_OUTPUT_DIR}/randOut.nrrd"
   DumpIntensities
-    randImage.nrrd
-    ${CMAKE_SOURCE_DIR}/test/img1.png
-    ${CMAKE_SOURCE_DIR}/test/img2.png
-    ${CMAKE_SOURCE_DIR}/test/img3.png
+    "${ITK_TEST_OUTPUT_DIR}/randOut.nrrd"
+    DATA{img1.png}
+    DATA{img2.png}
+    DATA{img3.png}
   )
