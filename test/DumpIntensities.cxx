@@ -51,11 +51,11 @@ int DumpIntensities(int argc, char* argv[])
     it.AddIterator(itk::ImageRegionIterator<ImageType>(im,im->GetLargestPossibleRegion()));
   }
 
-  srand(42);
+  unsigned long long c = 0;
   typedef itk::FixedArray<PixelType, 3> Vec3;
   vector<Vec3> values;
-  for (it.GoToBegin(); !it.IsAtEnd(); ++it) {
-    if (((float)rand()) / RAND_MAX < 0.1f) {
+  for (it.GoToBegin(); !it.IsAtEnd(); ++it, ++c) {
+    if (c % 42 == 0) {
       Vec3 v;
       for (unsigned int i=0; i<it.Size(); ++i) {
         v[i]=it[i].Get();
