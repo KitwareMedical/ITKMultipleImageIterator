@@ -41,7 +41,7 @@ public:
   void AddIterator(const IteratorType& it) {m_Iterators.push_back(it);}
   /// Advance all iterators
   Self& operator++() {
-    for (typename std::vector<IteratorType>::iterator it = m_Iterators.begin();
+    for (auto it = m_Iterators.begin();
       it != m_Iterators.end(); ++it) {
       ++(*it);
     }
@@ -49,7 +49,7 @@ public:
   }
   /// Rewind all iterators
   void GoToBegin() {
-    for (typename std::vector<IteratorType>::iterator it = m_Iterators.begin();
+    for (auto it = m_Iterators.begin();
       it != m_Iterators.end(); ++it) {
       it->GoToBegin();
     }
