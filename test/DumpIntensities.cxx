@@ -33,11 +33,11 @@ int DumpIntensities(int argc, char* argv[])
     cerr << "Usage: DumpIntensities outfile inImage [inImage ...]" << endl;
     return 1;
   }
-  typedef unsigned short                      PixelType;
-  typedef itk::Image<PixelType,3>             ImageType;
-  typedef itk::ImageFileReader<ImageType>     ReaderType;
+  using PixelType = unsigned short;
+  using ImageType = itk::Image<PixelType,3>;
+  using ReaderType = itk::ImageFileReader<ImageType>;
 
-  typedef itk::ImageRegionIterator<ImageType> IteratorType;
+  using IteratorType = itk::ImageRegionIterator<ImageType>;
   itk::MultipleImageIterator<IteratorType> it;
 
   vector<ImageType::Pointer> images; // Need to keep a reference as iterators only have weak references
@@ -52,7 +52,7 @@ int DumpIntensities(int argc, char* argv[])
   }
 
   unsigned long long c = 0;
-  typedef itk::FixedArray<PixelType, 3> Vec3;
+  using Vec3 = itk::FixedArray<PixelType, 3>;
   vector<Vec3> values;
   for (it.GoToBegin(); !it.IsAtEnd(); ++it, ++c) {
     if (c % 42 == 0) {
@@ -64,7 +64,7 @@ int DumpIntensities(int argc, char* argv[])
     }
   }
 
-  typedef itk::Image<Vec3, 1> Image1D;
+  using Image1D = itk::Image<Vec3, 1>;
   Image1D::RegionType region;
   region.SetIndex(0, 0);
   region.SetSize(0, values.size());
@@ -79,7 +79,7 @@ int DumpIntensities(int argc, char* argv[])
     ++oIt;
   }
 
-  typedef itk::ImageFileWriter<Image1D> WriterType;
+  using WriterType = itk::ImageFileWriter<Image1D>;
   WriterType::Pointer writer = WriterType::New();
   writer->SetInput(randImage);
   writer->SetFileName(argv[1]);
