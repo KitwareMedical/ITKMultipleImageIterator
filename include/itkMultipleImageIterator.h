@@ -38,7 +38,11 @@ public:
   using IteratorType = TIterator;
   using ImageType = typename IteratorType::ImageType;
   /// Access one of the iterators
-  IteratorType & operator[](const int i) { return m_Iterators[i]; }
+  IteratorType &
+  operator[](const int i)
+  {
+    return m_Iterators[i];
+  }
   /// Add a new iterator
   void
   AddIterator(const IteratorType & it)
